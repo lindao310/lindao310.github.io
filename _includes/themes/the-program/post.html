@@ -16,7 +16,7 @@
 						<p class="date-publish">
 							Published: 
 							<date class="date-pub" title="{{ page.date | date_to_xmlschema }}" datetime="{{ page.date | date_to_xmlschema }}" pubdate>
-							<span class="month"><abbr>{{ page.date | date: '%B' }}</abbr></span>
+							<span class="month"><abbr>{{ page.date | date: '%m' }}</abbr></span>
 							<span class="day">{{ page.date | date: '%d' }}</span>
 							<span class="year">{{ page.date | date: '%Y' }}</span>
 							</date>
@@ -34,12 +34,6 @@
 					</div><!-- meta -->
 				</div><!-- entry-content -->
 				<div class="misc-content">
-					<div class="social">
-						<ul class="list-linear">
-							<li><div class="twitter-tweet"><a href="https://twitter.com/share" class="twitter-share-button" data-count="horizontal" data-via="{{ site.author.twitter }}" data-lang="en">Tweet</a></div></li>
-							<li><div class="twitter-follow"><a href="https://twitter.com/{{ site.author.twitter }}" class="twitter-follow-button" data-show-count="false" data-lang="en"></a></div></li>
-						</ul>
-					</div>
 					<div class="comment">
 					{% include JB/comments %}
 					</div>
