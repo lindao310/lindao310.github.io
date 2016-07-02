@@ -8,10 +8,10 @@ highlighter: pygments
 # Themes are encouraged to use these universal variables 
 # so be sure to set them if your theme uses them.
 #
-title : MOMO 游戏平台API
+title : MOMO游戏平台API
 tagline: php redis erlang
 author :
-  name : wu.daolin
+  name : Rex
   email : wdl.04@163.com
   github : lindao310
 #  twitter : username
@@ -65,7 +65,7 @@ JB :
   #   /assets
   #
   # ASSET_PATH : false
-  ASSET_PATH : /assets/themes/dinky
+  ASSET_PATH : /assets/themes/the-program
 
   # These paths are to the main pages Jekyll-Bootstrap ships with.
   # Some JB helpers refer to these paths; change them here if needed.
@@ -73,8 +73,9 @@ JB :
   archive_path: /archive.html
   categories_path : /categories.html
   tags_path : /tags.html
-  atom_path : /atom.xml
-  rss_path : /rss.xml
+  pages_path : /pages.html
+  #atom_path : /atom.xml
+  #rss_path : /rss.xml
 
   # Settings for comments helper
   # Set 'provider' to the comment provider you want to use.
