@@ -14,8 +14,8 @@ author :
   name : wu.daolin
   email : wdl.04@163.com
   github : lindao310
-  twitter : username
-  feedburner : feedname
+#  twitter : username
+#  feedburner : feedname
 
 # The production_url is only used when full-domain names are needed
 # such as sitemap.txt 
@@ -81,7 +81,8 @@ JB :
   # Set 'provider' to false to turn commenting off globally.
   #
   comments :
-    provider : disqus
+      #  provider : disqus
+    provider : false
     disqus :
       short_name : jekyllbootstrap
     livefyre :
@@ -101,7 +102,8 @@ JB :
   # Set 'provider' to false to turn analytics off globally.
   #        
   analytics :
-    provider : google
+      #  provider : google
+    provider : false
     gauges :
         site_id : 'SITE ID'
     google : 
