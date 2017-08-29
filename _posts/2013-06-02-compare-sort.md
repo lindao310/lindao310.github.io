@@ -2,9 +2,12 @@
 layout: post
 title: "快速排序和冒泡排序和自带排序的比较"
 description: ""
-category: php 
-tags: [php]
+categories: php 
+tags: php
 ---
+
+* content
+{:toc}
 
 ### 背景
 
