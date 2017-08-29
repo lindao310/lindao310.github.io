@@ -11,7 +11,7 @@ tags: [php]
 
 ### 快速排序(quicksort.php)
 
-```
+```php
 
 <?php
 
@@ -56,7 +56,7 @@ $r = quicksort($example);
 
 ### 冒泡排序（maopao.php)
 
-```
+```php
 
 <?php
 $num = $argv[1];
@@ -85,7 +85,7 @@ $r = maopao($example);
 
 ### php自带数组排序 (asort.php)
 
-```
+```php
 
 <?php
 

@@ -22,7 +22,7 @@ tags: Redis
 
 while the slaves connected to a master will not expire keys independently (but will wait for the DEL coming from the master), they'll still take the full state of the expires existing in the dataset, so when a slave is elected to a master it will be able to expire the keys independently, fully acting as a master.
 
-（从库们不会独立的进行过期删除操作，必须等待主库判断过期删除时候通知过来的DEL来删除，但是key的ttl还是会记录的，然后了当一个从库被选举成主库的时候，就可以像上面那样说的进行删除了）
+（从库们不会独立的进行过期删除操作，必须等待主库判断出key过期进行删除的时候通知过来DEL，但是key的ttl还是会记录的，然后了当一个从库被选举成主库的时候，就可以像上面那样说的进行删除了）
 
 ### 结论
 那么问题也就很清楚了， 如果你redis的架构是一主一从，然后你在主上写带过期key， 在从库上读这个key， 那么除非你的过期key数量很少，通过master的被动方式能很快清理掉，不然肯定会出现bug的。 
@@ -33,7 +33,7 @@ while the slaves connected to a master will not expire keys independently (but w
 
 处理前
 
-```
+```sh
 
 used_memory:3728446872
 used_memory_human:3.47G
@@ -48,7 +48,7 @@ db0:keys=6388689,expires=6078233,avg_ttl=1263844535
 
 scan 后
 
-```
+```sh
 
 used_memory:3620033736
 used_memory_human:3.37G
@@ -88,11 +88,10 @@ db0:keys=19746281,expires=5207805,avg_ttl=48908945
 
 ### 总结
 
-- 过期key的读写都一定要在主库上。
+- 过期key的读写都一定要在主库上。 redis3.2会解决这个问题
 
 - 如果读写分离的话，过期key和不过期的key最好不要混用在同一个节点，尤其是在数量比较大的时候
 
-- 最好禁用掉slave的写入功能，看这个[https://redis.io/topics/replication#read-only-slave](https://redis.io/topics/replication#read-only-slave) - 20170325补充，熟读官方手册真的很有用
+- 最好禁用掉slave的写入功能，看这个[https://redis.io/topics/replication#read-only-slave](https://redis.io/topics/replication#read-only-slave) 
 
-
-
+- 20170325补充，熟读官方手册真的很有用
