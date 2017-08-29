@@ -5,6 +5,7 @@ description: ""
 category: php 
 tags: [php]
 ---
+
 ### 背景
 
 作为不爱学习的我， 面试被问到快排了，回来看了下，顺手比较下
@@ -49,8 +50,6 @@ $r = quicksort($example);
 
 
 ```
-
-
 
 
 
@@ -104,12 +103,16 @@ asort($example, SORT_NUMERIC);
 
 ### 测试结果
 
-10万元素的情况下速度还明显比1万元素的快5倍，很能说明问题了； 但离内置的asort还有点距离
+- 10万元素的情况下速度还明显比1万元素的快5倍，很能说明问题了； 但离内置的asort还有点距离
 
-`php quicksort.php 100000  2.30s user 0.09s system 99% cpu 2.404 total`
+```sh
 
-`php maopaosort.php 10000  16.75s user 0.11s system 99% cpu 16.943 total`
+php quicksort.php 100000  2.30s user 0.09s system 99% cpu 2.404 total
 
-`php asort.php 100000  0.24s user 0.02s system 98% cpu 0.258 total`
+php maopaosort.php 10000  16.75s user 0.11s system 99% cpu 16.943 total
+
+php asort.php 100000  0.24s user 0.02s system 98% cpu 0.258 total
+
+```
 
 也就是asort 比我这个quicksort快10倍
