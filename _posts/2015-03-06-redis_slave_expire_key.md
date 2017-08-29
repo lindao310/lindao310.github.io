@@ -9,8 +9,6 @@ tags: Redis
 * content
 {:toc}
 
-Redis Slave ttl 为0的问题  http://get.ftqq.com/7297.get
-
 ### 问题描述
 有个key，设置为5分钟过期； master写， slave读； 然后发现slave获取这个key始终存在， 从库上ttl这个key，返回0；
 
@@ -83,7 +81,7 @@ db0:keys=19746281,expires=5207805,avg_ttl=48908945
 
 - 然后了我就打算把从库的key整个scan一边，如果是ttl是0，再删掉， 结果发现找不到ttl为0的key，万分不解
 
-- 我决定把这近3000万key全scan导出来看看，导完发现只有大概1800万，无语了。。。又跑去看了下rdb，发现rdb里面也没有。。。所以只能下结论，从库里已经过了期的key，存在，keyspace可以看到， 内存也占着，但是rdb文件里是没有的，scan命令也是检索不出来的
+- 我决定把这近3000万key全scan导出来看看，导完发现只有大概1800万，无语了。。。又跑去看了下rdb，发现rdb里面也没有。。。所以只能下结论，从库里已经过了期的key，keyspace可以感知它存在， 内存也占着，但是rdb文件里是没有的，scan命令也是检索不出来的
 
 - 最后方案：让dba把从库域名切换到master的节点， down掉从库重新从master同步数据， 同步完成，把从库域名切回到slave所在的节点
 
@@ -93,6 +91,8 @@ db0:keys=19746281,expires=5207805,avg_ttl=48908945
 - 过期key的读写都一定要在主库上。
 
 - 如果读写分离的话，过期key和不过期的key最好不要混用在同一个节点，尤其是在数量比较大的时候
+
+- 最好禁用掉slave的写入功能，看这个[https://redis.io/topics/replication#read-only-slave](https://redis.io/topics/replication#read-only-slave) - 20170325补充，熟读官方手册真的很有用
 
 
 
