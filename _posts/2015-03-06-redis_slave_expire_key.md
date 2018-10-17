@@ -29,7 +29,7 @@ while the slaves connected to a master will not expire keys independently (but w
 
 
 ### 后续
-我们之前完全没有发现这个问题， 采用读写分离的方式使用带过期设置的key； 然后我看6下这个节点，过期key占95%, 反正总共就640万个key， 我决定用scan把key全部导出来研究研究；
+我们之前完全没有发现这个问题， 采用读写分离的方式使用带过期设置的key； 然后我看了下这个节点，过期key占95%, 反正总共就640万个key， 我决定用scan把key全部导出来研究研究；
 
 处理前
 
@@ -63,7 +63,7 @@ db0:keys=6143078,expires=5832622,avg_ttl=3708725069
 显然，由于scan会试图访问key， 触发了过期key的主动删除，清理掉24万个key; 然后没发现别的异常
 
 ### 误写入从库的过期key如何处理
-发现这个情况后我检查了下其余的redis，发现有发生过把过期key直接写到从库的情况...
+发现这个情况后我检查了下其余的redis，发现有把过期key直接写到从库的情况...
 从库比主库多了差不多1000万个key
 
 ```
@@ -92,6 +92,4 @@ db0:keys=19746281,expires=5207805,avg_ttl=48908945
 
 - 如果读写分离的话，过期key和不过期的key最好不要混用在同一个节点，尤其是在数量比较大的时候
 
-- 最好禁用掉slave的写入功能，看这个[https://redis.io/topics/replication#read-only-slave](https://redis.io/topics/replication#read-only-slave) 
-
-- 20170325补充，熟读官方手册真的很有用
+- 禁用掉slave的写入功能，看这个[https://redis.io/topics/replication#read-only-slave](https://redis.io/topics/replication#read-only-slave) 
