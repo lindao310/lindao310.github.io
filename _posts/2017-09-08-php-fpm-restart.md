@@ -1,9 +1,10 @@
 ---
 layout: post
-title: "centos7 下安装ffmpeg"
+title: "记php-fpm重启引起的一个bug"
+date:   2017-03-10 15:14:54
 description: ""
-category:
-tags: []
+category: php
+tags: [php]
 ---
 ### 记php-fpm重启引起的一个bug
 
